@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import {View, Button, StyleSheet} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+// screens //
+import SignInScreen from './landing/SignIn';
+import ProfileScreen from './landing/Profile';
+import VProfileScreen from './landing/VProfile';
+
+const Stack = createNativeStackNavigator();
+
+const MyStack = () => {
   return (
-    <View style={styles.container}>
-      <Text>Our Events -- Landning page its going to be nice coding in react</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+              <Stack.Navigator>
+                <Stack.Screen
+                  name="SignIn"
+                  component={SignInScreen}  
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen name="Profile" options={{ headerShown: false }} component={ProfileScreen} />
+                <Stack.Screen name="VProfile" options={{ headerShown: false }} component={VProfileScreen} />
+              </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  
 });
+export default MyStack;
